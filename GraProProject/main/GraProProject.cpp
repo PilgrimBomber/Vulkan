@@ -181,7 +181,7 @@ class Sample : public ShaderExample {
         }
         */
         std::vector<unsigned char> fragment_shader_spirv;
-        if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/ShaderExample/data/Shaders/Other/08 Using Tessellation Shaders/shader.frag.spv", fragment_shader_spirv)) {
+        if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/GraProProject/data/Shaders/shaderTest2.frag.spv", fragment_shader_spirv)) {
             return false;
         }
         VkDestroyer<VkShaderModule> fragment_shader_module(LogicalDevice);
@@ -240,7 +240,7 @@ class Sample : public ShaderExample {
         SpecifyPipelineVertexInputState(vertex_input_binding_descriptions, vertex_attribute_descriptions, vertex_input_state_create_info);
 
         VkPipelineInputAssemblyStateCreateInfo input_assembly_state_create_info;
-        SpecifyPipelineInputAssemblyState(VK_PRIMITIVE_TOPOLOGY_LINE_STRIP, false, input_assembly_state_create_info);
+        SpecifyPipelineInputAssemblyState(VK_PRIMITIVE_TOPOLOGY_TRIANGLE_FAN, false, input_assembly_state_create_info);
 
         VkPipelineTessellationStateCreateInfo tessellation_state_create_info;
         SpecifyPipelineTessellationState(3, tessellation_state_create_info);
@@ -273,7 +273,7 @@ class Sample : public ShaderExample {
         SpecifyPipelineViewportAndScissorTestState(viewport_infos, viewport_state_create_info);
 
         VkPipelineRasterizationStateCreateInfo rasterization_state_create_info;
-        SpecifyPipelineRasterizationState(false, false, VK_POLYGON_MODE_LINE, VK_CULL_MODE_BACK_BIT, VK_FRONT_FACE_COUNTER_CLOCKWISE, false, 0.0f, 0.0f, 0.0f, 1.0f, rasterization_state_create_info);
+        SpecifyPipelineRasterizationState(false, false, VK_POLYGON_MODE_FILL, VK_CULL_MODE_BACK_BIT, VK_FRONT_FACE_COUNTER_CLOCKWISE, false, 0.0f, 0.0f, 0.0f, 1.0f, rasterization_state_create_info);
 
         VkPipelineMultisampleStateCreateInfo multisample_state_create_info;
         SpecifyPipelineMultisampleState(VK_SAMPLE_COUNT_1_BIT, false, 0.0f, nullptr, false, false, multisample_state_create_info);
@@ -322,9 +322,9 @@ class Sample : public ShaderExample {
         // Vertex data
         std::vector<float> vertices = {
           0.0f, -0.75f, 0.0f,
-          0.25f, 0.75f, 0.0f,
+          0.25f, 0.75f, 0.0f/*,
           -0.75f, 0.75f, 0.0f,
-          0.0f, -0.75f, 0.0f
+          0.0f, -0.75f, 0.0f*/
         };
 
         InitVkDestroyer(LogicalDevice, VertexBuffer);
@@ -430,4 +430,4 @@ class Sample : public ShaderExample {
 
 };
 
-VULKAN_SAMPLE_FRAMEWORK("08 - Using Tessellation Shaders", 50, 25, 1280, 800, Sample)
+VULKAN_SAMPLE_FRAMEWORK("08 - Using Tessellation Shaders", 50, 25, 1600, 900, Sample)

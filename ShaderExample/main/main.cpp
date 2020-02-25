@@ -429,4 +429,4 @@ class Sample : public ShaderExample {
 
 };
 
-VULKAN_SAMPLE_FRAMEWORK( "08 - Using Tessellation Shaders", 50, 25, 1280, 800, Sample )
+VULKAN_SAMPLE_FRAMEWORK( "08 - Using Tessellation Shaders", 50, 25, 1900, 900, Sample )
