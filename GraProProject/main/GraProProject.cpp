@@ -151,7 +151,7 @@ class Sample : public ShaderExample {
 
         // Graphics pipeline
         std::vector<unsigned char> vertex_shader_spirv;
-        if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/GraProProject/data/Shaders/shaderTest.vert.spv", vertex_shader_spirv)) {
+        if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/GraProProject/data/Shaders/shaderTest2.vert.spv", vertex_shader_spirv)) {
             return false;
         }
 
