@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{19ED151D-F420-4FE7-AB1E-967208CA24E3}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>VulkanTestVL</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;VK_USE_PLATFORM_WIN32_KHR;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\Config;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Core;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Main;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\CommandBuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Descriptor Sets;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\GraphicsAndComputePipelines;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Helper;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ImagePresentation;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RecordingAndDrawing;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RenderPassesAndFramebuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ResourcesAndMemory;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\utility;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;VK_USE_PLATFORM_WIN32_KHR;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\Config;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Core;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Main;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\CommandBuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Descriptor Sets;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\GraphicsAndComputePipelines;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Helper;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ImagePresentation;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RecordingAndDrawing;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RenderPassesAndFramebuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ResourcesAndMemory;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\utility;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;VK_USE_PLATFORM_WIN32_KHR;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\Config;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Core;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Main;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\CommandBuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Descriptor Sets;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\GraphicsAndComputePipelines;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Helper;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ImagePresentation;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RecordingAndDrawing;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RenderPassesAndFramebuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ResourcesAndMemory;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\utility;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;VK_USE_PLATFORM_WIN32_KHR;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\Config;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Core;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Main;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\CommandBuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Descriptor Sets;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\GraphicsAndComputePipelines;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Helper;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ImagePresentation;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RecordingAndDrawing;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RenderPassesAndFramebuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ResourcesAndMemory;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\utility;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\extern;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="Config\ListOfVulkanFunctions.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\CommandBuffers\01 Creating a command pool.cpp" />
+    <ClCompile Include="src\CommandBuffers\02 Allocating command buffers.cpp" />
+    <ClCompile Include="src\CommandBuffers\03 Beginning a command buffer recording operation.cpp" />
+    <ClCompile Include="src\CommandBuffers\04 Ending a command buffer recording operation.cpp" />
+    <ClCompile Include="src\CommandBuffers\05 Resetting a command buffer.cpp" />
+    <ClCompile Include="src\CommandBuffers\06 Resetting a command pool.cpp" />
+    <ClCompile Include="src\CommandBuffers\07 Creating a semaphore.cpp" />
+    <ClCompile Include="src\CommandBuffers\08 Creating a fence.cpp" />
+    <ClCompile Include="src\CommandBuffers\09 Waiting for fences.cpp" />
+    <ClCompile Include="src\CommandBuffers\10 Resetting fences.cpp" />
+    <ClCompile Include="src\CommandBuffers\11 Submitting command buffers to the queue.cpp" />
+    <ClCompile Include="src\CommandBuffers\12 Synchronizing two command buffers.cpp" />
+    <ClCompile Include="src\CommandBuffers\13 Checking if processing of a submitted command buffer has finished.cpp" />
+    <ClCompile Include="src\CommandBuffers\14 Waiting until all commands submitted to a queue are finished.cpp" />
+    <ClCompile Include="src\CommandBuffers\15 Waiting for all submitted commands to be finished.cpp" />
+    <ClCompile Include="src\CommandBuffers\16 Destroying a fence.cpp" />
+    <ClCompile Include="src\CommandBuffers\17 Destroying a semaphore.cpp" />
+    <ClCompile Include="src\CommandBuffers\18 Freeing command buffers.cpp" />
+    <ClCompile Include="src\CommandBuffers\19 Destroying a command pool.cpp" />
+    <ClCompile Include="src\Core\CheckForDeviceExtensions.cpp" />
+    <ClCompile Include="src\Core\CheckForExtensions.cpp" />
+    <ClCompile Include="src\Core\CreateLogicalDevices.cpp" />
+    <ClCompile Include="src\Core\CreatingLogicalDevice_include_GeometryShaders_GraphicsQueue.cpp" />
+    <ClCompile Include="src\Core\DestroyLogicalDevice.cpp" />
+    <ClCompile Include="src\Core\DestroyVulkanInstance.cpp" />
+    <ClCompile Include="src\Core\DllLoader.cpp" />
+    <ClCompile Include="src\Core\EnumeratePhysicalDevices.cpp" />
+    <ClCompile Include="src\Core\GetDeviceQueue.cpp" />
+    <ClCompile Include="src\Core\GetPropsPhysDevice.cpp" />
+    <ClCompile Include="src\Core\LoadingFunctions.cpp" />
+    <ClCompile Include="src\Core\ReleasingVulkanLoaderLibrary.cpp" />
+    <ClCompile Include="src\Core\VulkanFunctions.cpp" />
+    <ClCompile Include="src\Core\VulkanInstance.cpp" />
+    <ClCompile Include="src\Descriptor Sets\01 Creating a sampler.cpp" />
+    <ClCompile Include="src\Descriptor Sets\02 Creating a sampled image.cpp" />
+    <ClCompile Include="src\Descriptor Sets\03 Creating a combined image sampler.cpp" />
+    <ClCompile Include="src\Descriptor Sets\04 Creating a storage image.cpp" />
+    <ClCompile Include="src\Descriptor Sets\05 Creating a uniform texel buffer.cpp" />
+    <ClCompile Include="src\Descriptor Sets\06 Creating a storage texel buffer.cpp" />
+    <ClCompile Include="src\Descriptor Sets\07 Creating a uniform buffer.cpp" />
+    <ClCompile Include="src\Descriptor Sets\08 Creating a storage buffer.cpp" />
+    <ClCompile Include="src\Descriptor Sets\09 Creating an input attachment.cpp" />
+    <ClCompile Include="src\Descriptor Sets\10 Creating a descriptor set layout.cpp" />
+    <ClCompile Include="src\Descriptor Sets\11 Creating a descriptor pool.cpp" />
+    <ClCompile Include="src\Descriptor Sets\12 Allocating descriptor sets.cpp" />
+    <ClCompile Include="src\Descriptor Sets\13 Updating descriptor sets.cpp" />
+    <ClCompile Include="src\Descriptor Sets\14 Binding descriptor sets.cpp" />
+    <ClCompile Include="src\Descriptor Sets\15 Creating descriptors with a texture and a uniform buffer.cpp" />
+    <ClCompile Include="src\Descriptor Sets\16 Freeing descriptor sets.cpp" />
+    <ClCompile Include="src\Descriptor Sets\17 Resetting a descriptor pool.cpp" />
+    <ClCompile Include="src\Descriptor Sets\18 Destroying a descriptor pool.cpp" />
+    <ClCompile Include="src\Descriptor Sets\19 Destroying a descriptor set layout.cpp" />
+    <ClCompile Include="src\Descriptor Sets\20 Destroying a sampler.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\01 Creating a shader module.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\02 Specifying pipeline shader stages.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\03 Specifying pipeline vertex input state.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\04 Specifying pipeline input assembly state.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\05 Specifying pipeline tessellation state.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\06 Specifying pipeline viewport and scissor test state.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\07 Specifying pipeline rasterization state.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\08 Specifying pipeline multisample state.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\09 Specifying pipeline depth and stencil state.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\10 Specifying pipeline blend state.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\11 Specifying pipeline dynamic states.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\12 Creating a pipeline layout.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\13 Specifying graphics pipeline creation parameters.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\14 Creating a pipeline cache object.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\15 Retrieving data from a pipeline cache.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\16 Merging multiple pipeline cache objects.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\17 Creating graphics pipelines.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\18 Creating a compute pipeline.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\19 Binding a pipeline object.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\20 Creating a pipeline layout with a combined image sampler, a buffer and push constant ranges.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\21 Creating a graphics pipeline with vertex and fragment shaders, depth test enabled, and with dynamic viewport and scissor tests.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\22 Creating multiple graphics pipelines on multiple threads.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\23 Destroying a pipeline.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\24 Destroying a pipeline cache.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\25 Destroying a pipeline layout.cpp" />
+    <ClCompile Include="src\GraphicsAndComputePipelines\26 Destroying a shader module.cpp" />
+    <ClCompile Include="src\Helper\01 Preparing a translation matrix.cpp" />
+    <ClCompile Include="src\Helper\02 Preparing a rotation matrix.cpp" />
+    <ClCompile Include="src\Helper\03 Preparing a scaling matrix.cpp" />
+    <ClCompile Include="src\Helper\04 Preparing a perspective projection matrix.cpp" />
+    <ClCompile Include="src\Helper\05 Preparing an orthographic projection matrix.cpp" />
+    <ClCompile Include="src\Helper\06 Loading texture data from a file.cpp" />
+    <ClCompile Include="src\Helper\07 Loading a 3D model from an OBJ file.cpp" />
+    <ClCompile Include="src\ImagePresentation\01 Creating a Vulkan Instance with WSI extensions enabled.cpp" />
+    <ClCompile Include="src\ImagePresentation\02 Creating a presentation surface.cpp" />
+    <ClCompile Include="src\ImagePresentation\03 Selecting a queue family that supports presentation to a given surface.cpp" />
+    <ClCompile Include="src\ImagePresentation\04 Creating a logical device with WSI extensions enabled.cpp" />
+    <ClCompile Include="src\ImagePresentation\05 Selecting a desired presentation mode.cpp" />
+    <ClCompile Include="src\ImagePresentation\06 Getting capabilities of a presentation surface.cpp" />
+    <ClCompile Include="src\ImagePresentation\07 Selecting a number of swapchain images.cpp" />
+    <ClCompile Include="src\ImagePresentation\08 Choosing a size of swapchain images.cpp" />
+    <ClCompile Include="src\ImagePresentation\09 Selecting desired usage scenarios of swapchain images.cpp" />
+    <ClCompile Include="src\ImagePresentation\10 Selecting a transformation of swapchain images.cpp" />
+    <ClCompile Include="src\ImagePresentation\11 Selecting a format of swapchain images.cpp" />
+    <ClCompile Include="src\ImagePresentation\12 Creating a swapchain.cpp" />
+    <ClCompile Include="src\ImagePresentation\13 Getting handles of swapchain images.cpp" />
+    <ClCompile Include="src\ImagePresentation\14 Creating a swapchain with R8G8B8A8 format and a MAILBOX present mode.cpp" />
+    <ClCompile Include="src\ImagePresentation\15 Acquiring a swapchain image.cpp" />
+    <ClCompile Include="src\ImagePresentation\16 Presenting an image.cpp" />
+    <ClCompile Include="src\ImagePresentation\17 Destroying a swapchain.cpp" />
+    <ClCompile Include="src\ImagePresentation\18 Destroying a presentation surface.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\01 Clearing a color image.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\02 Clearing a depth-stencil image.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\03 Clearing render pass attachments.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\04 Binding vertex buffers.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\05 Binding an index buffer.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\06 Providing data to shaders through push constants.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\07 Setting viewport state dynamically.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\08 Setting scissor state dynamically.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\09 Setting line width state dynamically.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\10 Setting depth bias state dynamically.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\11 Setting blend constants state dynamically.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\12 Drawing a geometry.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\13 Drawing an indexed geometry.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\14 Dispatching compute work.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\15 Executing secondary command buffer inside a primary command buffer.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\16 Recording a command buffer that draws a geometry with dynamic viewport and scissor states.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\17 Recording command buffers on multiple threads.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\18 Preparing a single frame of animation.cpp" />
+    <ClCompile Include="src\RecordingAndDrawing\19 Increasing the performance through increasing the number of separately rendered frames.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\01 Specifying attachments descriptions.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\02 Specifying subpass descriptions.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\03 Specifying dependencies between subpasses.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\04 Creating a render pass.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\05 Creating a framebuffer.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\06 Preparing a render pass for geometry rendering and postprocess subpasses.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\07 Preparing a render pass and a framebuffer with color and depth attachments.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\08 Beginning a render pass.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\09 Progressing to the next subpass.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\10 Ending a render pass.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\11 Destroying a framebuffer.cpp" />
+    <ClCompile Include="src\RenderPassesAndFramebuffers\12 Destroying a render pass.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\01 Creating a buffer.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\02 Allocating and binding memory object to a buffer.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\03 Setting a buffer memory barrier.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\04 Creating a buffer view.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\05 Creating an image.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\06 Allocating and binding memory object to an image.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\07 Setting an image memory barrier.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\08 Creating an image view.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\09 Creating a 2D image and view.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\10 Creating a layered 2D image with a CUBEMAP view.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\11 Mapping, updating and unmapping host-visible memory.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\12 Copying data between buffers.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\13 Copying data from a buffer to an image.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\14 Copying data from an image to a buffer.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\15 Using staging buffer to update a buffer with a device-local memory bound.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\16 Using staging buffer to update an image with a device-local memory bound.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\17 Destroying an image view.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\18 Destroying an image.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\19 Destroying a buffer view.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\20 Freeing a memory object.cpp" />
+    <ClCompile Include="src\ResourcesAndMemory\21 Destroying a buffer.cpp" />
+    <ClCompile Include="src\utility\common.cpp" />
+    <ClCompile Include="src\utility\exceptions.cpp" />
+    <ClCompile Include="src\utility\Tools.cpp" />
+    <ClCompile Include="src\utility\VulkanDestroyer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\CommandBuffers\01 Creating a command pool.h" />
+    <ClInclude Include="src\CommandBuffers\02 Allocating command buffers.h" />
+    <ClInclude Include="src\CommandBuffers\03 Beginning a command buffer recording operation.h" />
+    <ClInclude Include="src\CommandBuffers\04 Ending a command buffer recording operation.h" />
+    <ClInclude Include="src\CommandBuffers\05 Resetting a command buffer.h" />
+    <ClInclude Include="src\CommandBuffers\06 Resetting a command pool.h" />
+    <ClInclude Include="src\CommandBuffers\07 Creating a semaphore.h" />
+    <ClInclude Include="src\CommandBuffers\08 Creating a fence.h" />
+    <ClInclude Include="src\CommandBuffers\09 Waiting for fences.h" />
+    <ClInclude Include="src\CommandBuffers\10 Resetting fences.h" />
+    <ClInclude Include="src\CommandBuffers\11 Submitting command buffers to the queue.h" />
+    <ClInclude Include="src\CommandBuffers\12 Synchronizing two command buffers.h" />
+    <ClInclude Include="src\CommandBuffers\13 Checking if processing of a submitted command buffer has finished.h" />
+    <ClInclude Include="src\CommandBuffers\14 Waiting until all commands submitted to a queue are finished.h" />
+    <ClInclude Include="src\CommandBuffers\15 Waiting for all submitted commands to be finished.h" />
+    <ClInclude Include="src\CommandBuffers\16 Destroying a fence.h" />
+    <ClInclude Include="src\CommandBuffers\17 Destroying a semaphore.h" />
+    <ClInclude Include="src\CommandBuffers\18 Freeing command buffers.h" />
+    <ClInclude Include="src\CommandBuffers\19 Destroying a command pool.h" />
+    <ClInclude Include="src\Core\CheckForDeviceExtensions.h" />
+    <ClInclude Include="src\Core\CheckForExtensions.h" />
+    <ClInclude Include="src\Core\CreateLogicalDevices.h" />
+    <ClInclude Include="src\Core\CreatingLogicalDevice_include_GeometryShaders_GraphicsQueue.h" />
+    <ClInclude Include="src\Core\DestroyLogicalDevice.h" />
+    <ClInclude Include="src\Core\DestroyVulkanInstance.h" />
+    <ClInclude Include="src\Core\DllLoader.h" />
+    <ClInclude Include="src\Core\EnumeratePhysicalDevices.h" />
+    <ClInclude Include="src\Core\GetDeviceQueue.h" />
+    <ClInclude Include="src\Core\GetPropsPhysDevice.h" />
+    <ClInclude Include="src\Core\LoadingFunctions.h" />
+    <ClInclude Include="src\Core\ReleasingVulkanLoaderLibrary.h" />
+    <ClInclude Include="src\Core\VulkanFunctions.h" />
+    <ClInclude Include="src\Core\VulkanInstance.h" />
+    <ClInclude Include="src\Descriptor Sets\01 Creating a sampler.h" />
+    <ClInclude Include="src\Descriptor Sets\02 Creating a sampled image.h" />
+    <ClInclude Include="src\Descriptor Sets\03 Creating a combined image sampler.h" />
+    <ClInclude Include="src\Descriptor Sets\04 Creating a storage image.h" />
+    <ClInclude Include="src\Descriptor Sets\05 Creating a uniform texel buffer.h" />
+    <ClInclude Include="src\Descriptor Sets\06 Creating a storage texel buffer.h" />
+    <ClInclude Include="src\Descriptor Sets\07 Creating a uniform buffer.h" />
+    <ClInclude Include="src\Descriptor Sets\08 Creating a storage buffer.h" />
+    <ClInclude Include="src\Descriptor Sets\09 Creating an input attachment.h" />
+    <ClInclude Include="src\Descriptor Sets\10 Creating a descriptor set layout.h" />
+    <ClInclude Include="src\Descriptor Sets\11 Creating a descriptor pool.h" />
+    <ClInclude Include="src\Descriptor Sets\12 Allocating descriptor sets.h" />
+    <ClInclude Include="src\Descriptor Sets\13 Updating descriptor sets.h" />
+    <ClInclude Include="src\Descriptor Sets\14 Binding descriptor sets.h" />
+    <ClInclude Include="src\Descriptor Sets\15 Creating descriptors with a texture and a uniform buffer.h" />
+    <ClInclude Include="src\Descriptor Sets\16 Freeing descriptor sets.h" />
+    <ClInclude Include="src\Descriptor Sets\17 Resetting a descriptor pool.h" />
+    <ClInclude Include="src\Descriptor Sets\18 Destroying a descriptor pool.h" />
+    <ClInclude Include="src\Descriptor Sets\19 Destroying a descriptor set layout.h" />
+    <ClInclude Include="src\Descriptor Sets\20 Destroying a sampler.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\01 Creating a shader module.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\02 Specifying pipeline shader stages.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\03 Specifying pipeline vertex input state.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\04 Specifying pipeline input assembly state.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\05 Specifying pipeline tessellation state.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\06 Specifying pipeline viewport and scissor test state.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\07 Specifying pipeline rasterization state.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\08 Specifying pipeline multisample state.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\09 Specifying pipeline depth and stencil state.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\10 Specifying pipeline blend state.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\11 Specifying pipeline dynamic states.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\12 Creating a pipeline layout.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\13 Specifying graphics pipeline creation parameters.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\14 Creating a pipeline cache object.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\15 Retrieving data from a pipeline cache.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\16 Merging multiple pipeline cache objects.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\17 Creating graphics pipelines.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\18 Creating a compute pipeline.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\19 Binding a pipeline object.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\20 Creating a pipeline layout with a combined image sampler, a buffer and push constant ranges.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\21 Creating a graphics pipeline with vertex and fragment shaders, depth test enabled, and with dynamic viewport and scissor tests.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\22 Creating multiple graphics pipelines on multiple threads.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\23 Destroying a pipeline.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\24 Destroying a pipeline cache.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\25 Destroying a pipeline layout.h" />
+    <ClInclude Include="src\GraphicsAndComputePipelines\26 Destroying a shader module.h" />
+    <ClInclude Include="src\Helper\01 Preparing a translation matrix.h" />
+    <ClInclude Include="src\Helper\02 Preparing a rotation matrix.h" />
+    <ClInclude Include="src\Helper\03 Preparing a scaling matrix.h" />
+    <ClInclude Include="src\Helper\04 Preparing a perspective projection matrix.h" />
+    <ClInclude Include="src\Helper\05 Preparing an orthographic projection matrix.h" />
+    <ClInclude Include="src\Helper\06 Loading texture data from a file.h" />
+    <ClInclude Include="src\Helper\07 Loading a 3D model from an OBJ file.h" />
+    <ClInclude Include="src\ImagePresentation\01 Creating a Vulkan Instance with WSI extensions enabled.h" />
+    <ClInclude Include="src\ImagePresentation\02 Creating a presentation surface.h" />
+    <ClInclude Include="src\ImagePresentation\03 Selecting a queue family that supports presentation to a given surface.h" />
+    <ClInclude Include="src\ImagePresentation\04 Creating a logical device with WSI extensions enabled.h" />
+    <ClInclude Include="src\ImagePresentation\05 Selecting a desired presentation mode.h" />
+    <ClInclude Include="src\ImagePresentation\06 Getting capabilities of a presentation surface.h" />
+    <ClInclude Include="src\ImagePresentation\07 Selecting a number of swapchain images.h" />
+    <ClInclude Include="src\ImagePresentation\08 Choosing a size of swapchain images.h" />
+    <ClInclude Include="src\ImagePresentation\09 Selecting desired usage scenarios of swapchain images.h" />
+    <ClInclude Include="src\ImagePresentation\10 Selecting a transformation of swapchain images.h" />
+    <ClInclude Include="src\ImagePresentation\11 Selecting a format of swapchain images.h" />
+    <ClInclude Include="src\ImagePresentation\12 Creating a swapchain.h" />
+    <ClInclude Include="src\ImagePresentation\13 Getting handles of swapchain images.h" />
+    <ClInclude Include="src\ImagePresentation\14 Creating a swapchain with R8G8B8A8 format and a MAILBOX present mode.h" />
+    <ClInclude Include="src\ImagePresentation\15 Acquiring a swapchain image.h" />
+    <ClInclude Include="src\ImagePresentation\16 Presenting an image.h" />
+    <ClInclude Include="src\ImagePresentation\17 Destroying a swapchain.h" />
+    <ClInclude Include="src\ImagePresentation\18 Destroying a presentation surface.h" />
+    <ClInclude Include="src\RecordingAndDrawing\01 Clearing a color image.h" />
+    <ClInclude Include="src\RecordingAndDrawing\02 Clearing a depth-stencil image.h" />
+    <ClInclude Include="src\RecordingAndDrawing\03 Clearing render pass attachments.h" />
+    <ClInclude Include="src\RecordingAndDrawing\04 Binding vertex buffers.h" />
+    <ClInclude Include="src\RecordingAndDrawing\05 Binding an index buffer.h" />
+    <ClInclude Include="src\RecordingAndDrawing\06 Providing data to shaders through push constants.h" />
+    <ClInclude Include="src\RecordingAndDrawing\07 Setting viewport state dynamically.h" />
+    <ClInclude Include="src\RecordingAndDrawing\08 Setting scissor state dynamically.h" />
+    <ClInclude Include="src\RecordingAndDrawing\09 Setting line width state dynamically.h" />
+    <ClInclude Include="src\RecordingAndDrawing\10 Setting depth bias state dynamically.h" />
+    <ClInclude Include="src\RecordingAndDrawing\11 Setting blend constants state dynamically.h" />
+    <ClInclude Include="src\RecordingAndDrawing\12 Drawing a geometry.h" />
+    <ClInclude Include="src\RecordingAndDrawing\13 Drawing an indexed geometry.h" />
+    <ClInclude Include="src\RecordingAndDrawing\14 Dispatching compute work.h" />
+    <ClInclude Include="src\RecordingAndDrawing\15 Executing secondary command buffer inside a primary command buffer.h" />
+    <ClInclude Include="src\RecordingAndDrawing\16 Recording a command buffer that draws a geometry with dynamic viewport and scissor states.h" />
+    <ClInclude Include="src\RecordingAndDrawing\17 Recording command buffers on multiple threads.h" />
+    <ClInclude Include="src\RecordingAndDrawing\18 Preparing a single frame of animation.h" />
+    <ClInclude Include="src\RecordingAndDrawing\19 Increasing the performance through increasing the number of separately rendered frames.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\01 Specifying attachments descriptions.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\02 Specifying subpass descriptions.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\03 Specifying dependencies between subpasses.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\04 Creating a render pass.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\05 Creating a framebuffer.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\06 Preparing a render pass for geometry rendering and postprocess subpasses.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\07 Preparing a render pass and a framebuffer with color and depth attachments.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\08 Beginning a render pass.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\09 Progressing to the next subpass.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\10 Ending a render pass.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\11 Destroying a framebuffer.h" />
+    <ClInclude Include="src\RenderPassesAndFramebuffers\12 Destroying a render pass.h" />
+    <ClInclude Include="src\ResourcesAndMemory\01 Creating a buffer.h" />
+    <ClInclude Include="src\ResourcesAndMemory\02 Allocating and binding memory object to a buffer.h" />
+    <ClInclude Include="src\ResourcesAndMemory\03 Setting a buffer memory barrier.h" />
+    <ClInclude Include="src\ResourcesAndMemory\04 Creating a buffer view.h" />
+    <ClInclude Include="src\ResourcesAndMemory\05 Creating an image.h" />
+    <ClInclude Include="src\ResourcesAndMemory\06 Allocating and binding memory object to an image.h" />
+    <ClInclude Include="src\ResourcesAndMemory\07 Setting an image memory barrier.h" />
+    <ClInclude Include="src\ResourcesAndMemory\08 Creating an image view.h" />
+    <ClInclude Include="src\ResourcesAndMemory\09 Creating a 2D image and view.h" />
+    <ClInclude Include="src\ResourcesAndMemory\10 Creating a layered 2D image with a CUBEMAP view.h" />
+    <ClInclude Include="src\ResourcesAndMemory\11 Mapping, updating and unmapping host-visible memory.h" />
+    <ClInclude Include="src\ResourcesAndMemory\12 Copying data between buffers.h" />
+    <ClInclude Include="src\ResourcesAndMemory\13 Copying data from a buffer to an image.h" />
+    <ClInclude Include="src\ResourcesAndMemory\14 Copying data from an image to a buffer.h" />
+    <ClInclude Include="src\ResourcesAndMemory\15 Using staging buffer to update a buffer with a device-local memory bound.h" />
+    <ClInclude Include="src\ResourcesAndMemory\16 Using staging buffer to update an image with a device-local memory bound.h" />
+    <ClInclude Include="src\ResourcesAndMemory\17 Destroying an image view.h" />
+    <ClInclude Include="src\ResourcesAndMemory\18 Destroying an image.h" />
+    <ClInclude Include="src\ResourcesAndMemory\19 Destroying a buffer view.h" />
+    <ClInclude Include="src\ResourcesAndMemory\20 Freeing a memory object.h" />
+    <ClInclude Include="src\ResourcesAndMemory\21 Destroying a buffer.h" />
+    <ClInclude Include="src\utility\AllHeaders.h" />
+    <ClInclude Include="src\utility\common.h" />
+    <ClInclude Include="src\utility\exceptions.h" />
+    <ClInclude Include="src\utility\Tools.h" />
+    <ClInclude Include="src\utility\VulkanDestroyer.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
