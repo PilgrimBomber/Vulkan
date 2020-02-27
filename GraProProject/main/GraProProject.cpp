@@ -87,6 +87,7 @@ class Sample : public ShaderExample {
         VkPhysicalDeviceFeatures device_features = {};
         device_features.fillModeNonSolid = true;
         device_features.tessellationShader = true;
+        device_features.geometryShader = true;
 
         if (!InitializeVulkan(WindowParameters, &device_features, VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT, false)) {
             return false;
@@ -180,6 +181,16 @@ class Sample : public ShaderExample {
             return false;
         }
         */
+        std::vector<unsigned char> geometry_shader_spirv;
+        if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/GraProProject/data/Shaders/shaderTest2.geom.spv", geometry_shader_spirv)) {
+            return false;
+        }
+
+        VkDestroyer<VkShaderModule> geometry_shader_module(LogicalDevice);
+        if (!CreateShaderModule(*LogicalDevice, geometry_shader_spirv, *geometry_shader_module)) {
+            return false;
+        }
+
         std::vector<unsigned char> fragment_shader_spirv;
         if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/GraProProject/data/Shaders/shaderTest2.frag.spv", fragment_shader_spirv)) {
             return false;
@@ -208,6 +219,12 @@ class Sample : public ShaderExample {
           //  "main",                                       // char const                 * EntryPointName;
           //  nullptr                                       // VkSpecializationInfo const * SpecializationInfo;
           //},
+          {
+              VK_SHADER_STAGE_GEOMETRY_BIT,
+              *geometry_shader_module,
+              "main",
+              nullptr
+          },
           {
             VK_SHADER_STAGE_FRAGMENT_BIT,                 // VkShaderStageFlagBits        ShaderStage
             *fragment_shader_module,                      // VkShaderModule               ShaderModule
@@ -240,7 +257,9 @@ class Sample : public ShaderExample {
         SpecifyPipelineVertexInputState(vertex_input_binding_descriptions, vertex_attribute_descriptions, vertex_input_state_create_info);
 
         VkPipelineInputAssemblyStateCreateInfo input_assembly_state_create_info;
-        SpecifyPipelineInputAssemblyState(VK_PRIMITIVE_TOPOLOGY_TRIANGLE_FAN, false, input_assembly_state_create_info);
+        SpecifyPipelineInputAssemblyState(VK_PRIMITIVE_TOPOLOGY_LINE_STRIP, false, input_assembly_state_create_info);
+
+        
 
         VkPipelineTessellationStateCreateInfo tessellation_state_create_info;
         SpecifyPipelineTessellationState(3, tessellation_state_create_info);
@@ -393,7 +412,7 @@ class Sample : public ShaderExample {
 
             BindVertexBuffers(command_buffer, 0, { { *VertexBuffer, 0 } });
             
-            DrawGeometry(command_buffer, 4 , 1, 0, 0);
+            DrawGeometry(command_buffer, 5 , 1, 0, 0);
 
             EndRenderPass(command_buffer);
 

@@ -52,5 +52,14 @@
     <None Include="data\Shaders\shaderTest.vert">
       <Filter>Shader</Filter>
     </None>
+    <None Include="data\Shaders\shaderTest2.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="data\Shaders\shaderTest2.vert">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="data\Shaders\shaderTest2.geom">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

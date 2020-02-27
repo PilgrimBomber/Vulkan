@@ -173,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="data\Shaders\shaderTest.vert" />
+    <None Include="data\Shaders\shaderTest2.frag" />
+    <None Include="data\Shaders\shaderTest2.geom" />
+    <None Include="data\Shaders\shaderTest2.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
