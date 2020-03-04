@@ -143,13 +143,13 @@
 #include "18 Preparing a single frame of animation.h"
 #include "19 Increasing the performance through increasing the number of separately rendered frames.h"
 
-// #include "01 Preparing a translation matrix.h"
-// #include "02 Preparing a rotation matrix.h"
-// #include "03 Preparing a scaling matrix.h"
-// #include "04 Preparing a perspective projection matrix.h"
-// #include "05 Preparing an orthographic projection matrix.h"
-// #include "06 Loading texture data from a file.h"
-// #include "07 Loading a 3D model from an OBJ file.h"
+ #include "01 Preparing a translation matrix.h"
+ #include "02 Preparing a rotation matrix.h"
+ #include "03 Preparing a scaling matrix.h"
+ #include "04 Preparing a perspective projection matrix.h"
+ #include "05 Preparing an orthographic projection matrix.h"
+ #include "06 Loading texture data from a file.h"
+ #include "07 Loading a 3D model from an OBJ file.h"
 
 
 #endif // ALL_HEADERS

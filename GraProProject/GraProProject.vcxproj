@@ -172,6 +172,8 @@
     <ClInclude Include="core\SampleFramework.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="data\Shaders\Other\08 Using Tessellation Shaders\shader.tesc" />
+    <None Include="data\Shaders\Other\08 Using Tessellation Shaders\shader.tese" />
     <None Include="data\Shaders\shaderTest.vert" />
     <None Include="data\Shaders\shaderTest2.frag" />
     <None Include="data\Shaders\shaderTest2.geom" />

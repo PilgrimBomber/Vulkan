@@ -87,7 +87,7 @@ class Sample : public ShaderExample {
         VkPhysicalDeviceFeatures device_features = {};
         device_features.fillModeNonSolid = true;
         device_features.tessellationShader = true;
-        device_features.geometryShader = true;
+        //device_features.geometryShader = true;
 
         if (!InitializeVulkan(WindowParameters, &device_features, VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT, false)) {
             return false;
@@ -161,7 +161,7 @@ class Sample : public ShaderExample {
             return false;
         }
         
-       /* std::vector<unsigned char> tessellation_control_shader_spirv;
+        std::vector<unsigned char> tessellation_control_shader_spirv;
         if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/ShaderExample/data/Shaders/Other/08 Using Tessellation Shaders/shader.tesc.spv", tessellation_control_shader_spirv)) {
             return false;
         }
@@ -180,7 +180,7 @@ class Sample : public ShaderExample {
         if (!CreateShaderModule(*LogicalDevice, tessellation_evaluation_shader_spirv, *tessellation_evaluation_shader_module)) {
             return false;
         }
-        */
+        
         std::vector<unsigned char> geometry_shader_spirv;
         if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/GraProProject/data/Shaders/shaderTest2.geom.spv", geometry_shader_spirv)) {
             return false;
@@ -207,24 +207,24 @@ class Sample : public ShaderExample {
             "main",                                       // char const                 * EntryPointName;
             nullptr                                       // VkSpecializationInfo const * SpecializationInfo;
           },
-          //{
-          //  VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT,     // VkShaderStageFlagBits        ShaderStage
-          //  *tessellation_control_shader_module,          // VkShaderModule               ShaderModule
-          //  "main",                                       // char const                 * EntryPointName;
-          //  nullptr                                       // VkSpecializationInfo const * SpecializationInfo;
-          //},
-          //{
-          //  VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT,  // VkShaderStageFlagBits        ShaderStage
-          //  *tessellation_evaluation_shader_module,       // VkShaderModule               ShaderModule
-          //  "main",                                       // char const                 * EntryPointName;
-          //  nullptr                                       // VkSpecializationInfo const * SpecializationInfo;
-          //},
           {
+            VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT,     // VkShaderStageFlagBits        ShaderStage
+            *tessellation_control_shader_module,          // VkShaderModule               ShaderModule
+            "main",                                       // char const                 * EntryPointName;
+            nullptr                                       // VkSpecializationInfo const * SpecializationInfo;
+          },
+          {
+            VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT,  // VkShaderStageFlagBits        ShaderStage
+            *tessellation_evaluation_shader_module,       // VkShaderModule               ShaderModule
+            "main",                                       // char const                 * EntryPointName;
+            nullptr                                       // VkSpecializationInfo const * SpecializationInfo;
+          },
+          /*{
               VK_SHADER_STAGE_GEOMETRY_BIT,
               *geometry_shader_module,
               "main",
               nullptr
-          },
+          },*/
           {
             VK_SHADER_STAGE_FRAGMENT_BIT,                 // VkShaderStageFlagBits        ShaderStage
             *fragment_shader_module,                      // VkShaderModule               ShaderModule
@@ -257,7 +257,7 @@ class Sample : public ShaderExample {
         SpecifyPipelineVertexInputState(vertex_input_binding_descriptions, vertex_attribute_descriptions, vertex_input_state_create_info);
 
         VkPipelineInputAssemblyStateCreateInfo input_assembly_state_create_info;
-        SpecifyPipelineInputAssemblyState(VK_PRIMITIVE_TOPOLOGY_LINE_STRIP, false, input_assembly_state_create_info);
+        SpecifyPipelineInputAssemblyState(VK_PRIMITIVE_TOPOLOGY_PATCH_LIST, false, input_assembly_state_create_info);
 
         
 
@@ -292,7 +292,7 @@ class Sample : public ShaderExample {
         SpecifyPipelineViewportAndScissorTestState(viewport_infos, viewport_state_create_info);
 
         VkPipelineRasterizationStateCreateInfo rasterization_state_create_info;
-        SpecifyPipelineRasterizationState(false, false, VK_POLYGON_MODE_FILL, VK_CULL_MODE_BACK_BIT, VK_FRONT_FACE_COUNTER_CLOCKWISE, false, 0.0f, 0.0f, 0.0f, 1.0f, rasterization_state_create_info);
+        SpecifyPipelineRasterizationState(false, false, VK_POLYGON_MODE_LINE, VK_CULL_MODE_BACK_BIT, VK_FRONT_FACE_COUNTER_CLOCKWISE, false, 0.0f, 0.0f, 0.0f, 1.0f, rasterization_state_create_info);
 
         VkPipelineMultisampleStateCreateInfo multisample_state_create_info;
         SpecifyPipelineMultisampleState(VK_SAMPLE_COUNT_1_BIT, false, 0.0f, nullptr, false, false, multisample_state_create_info);
@@ -341,8 +341,8 @@ class Sample : public ShaderExample {
         // Vertex data
         std::vector<float> vertices = {
           0.0f, -0.75f, 0.0f,
-          0.25f, 0.75f, 0.0f/*,
-          -0.75f, 0.75f, 0.0f,
+          0.25f, 0.75f, 0.0f,
+          -0.75f, 0.75f, 0.0f/*,
           0.0f, -0.75f, 0.0f*/
         };
 
@@ -412,7 +412,7 @@ class Sample : public ShaderExample {
 
             BindVertexBuffers(command_buffer, 0, { { *VertexBuffer, 0 } });
             
-            DrawGeometry(command_buffer, 5 , 1, 0, 0);
+            DrawGeometry(command_buffer, 3 , 1, 0, 0);
 
             EndRenderPass(command_buffer);
 

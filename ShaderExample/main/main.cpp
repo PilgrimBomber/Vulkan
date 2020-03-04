@@ -151,7 +151,7 @@ class Sample : public ShaderExample {
 
     // Graphics pipeline
     std::vector<unsigned char> vertex_shader_spirv;
-    if( !GetBinaryFileContents( "C:/Users/timon/source/repos/VulkanCppWindowedProgram1/ShaderExample/data/Shaders/Other/08 Using Tessellation Shaders/shader.vert.spv", vertex_shader_spirv ) ) {
+    if( !GetBinaryFileContents( "C:/Users/timon/source/repos/VulkanCppWindowedProgram1/GraProProject/data/Shaders/Other/08 Using Tessellation Shaders/shader.vert.spv", vertex_shader_spirv ) ) {
       return false;
     }
 
@@ -161,7 +161,7 @@ class Sample : public ShaderExample {
     }
 
     std::vector<unsigned char> tessellation_control_shader_spirv;
-    if( !GetBinaryFileContents( "C:/Users/timon/source/repos/VulkanCppWindowedProgram1/ShaderExample/data/Shaders/Other/08 Using Tessellation Shaders/shader.tesc.spv", tessellation_control_shader_spirv ) ) {
+    if( !GetBinaryFileContents( "C:/Users/timon/source/repos/VulkanCppWindowedProgram1/GraProProject/data/Shaders/Other/08 Using Tessellation Shaders/shader.tesc.spv", tessellation_control_shader_spirv ) ) {
       return false;
     }
 

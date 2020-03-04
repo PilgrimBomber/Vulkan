@@ -61,5 +61,11 @@
     <None Include="data\Shaders\shaderTest2.geom">
       <Filter>Shader</Filter>
     </None>
+    <None Include="data\Shaders\Other\08 Using Tessellation Shaders\shader.tesc">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="data\Shaders\Other\08 Using Tessellation Shaders\shader.tese">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>
