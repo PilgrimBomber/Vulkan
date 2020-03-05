@@ -14,7 +14,7 @@ class Sample : public ShaderExample {
 	VkDestroyer<VkImageView>						ImageView;
 	VkDestroyer<VkSampler>							Sampler;
 
-	const uint32_t                                  PARTICLES_COUNT = 200;
+	const uint32_t                                  PARTICLES_COUNT = 1000;
 	VkDestroyer<VkBuffer>                           VertexBuffer;
 	VkDestroyer<VkDeviceMemory>                     VertexBufferMemory;
 	VkDestroyer<VkBufferView>                       VertexBufferView;
@@ -54,7 +54,7 @@ class Sample : public ShaderExample {
 		int width = 1;
 		int height = 1;
 		std::vector<unsigned char> image_data;
-		if (!LoadTextureDataFromFile("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/Explosion/data/Textures/sunset.jpg", 4, image_data, &width, &height)) {
+		if (!LoadTextureDataFromFile("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/Explosion/data/Textures/ExplosionTest.png", 4, image_data, &width, &height)) {
 			return false;
 		}
 
@@ -65,7 +65,7 @@ class Sample : public ShaderExample {
 		if (!CreateCombinedImageSampler(PhysicalDevice, *LogicalDevice, VK_IMAGE_TYPE_2D, VK_FORMAT_R8G8B8A8_UNORM, { (uint32_t)width, (uint32_t)height, 1 },
 			1, 1, VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT, VK_IMAGE_VIEW_TYPE_2D, VK_IMAGE_ASPECT_COLOR_BIT, VK_FILTER_LINEAR,
 			VK_FILTER_LINEAR, VK_SAMPLER_MIPMAP_MODE_NEAREST, VK_SAMPLER_ADDRESS_MODE_REPEAT, VK_SAMPLER_ADDRESS_MODE_REPEAT,
-			VK_SAMPLER_ADDRESS_MODE_REPEAT, 0.0f, false, 1.0f, false, VK_COMPARE_OP_ALWAYS, 0.0f, 1.0f, VK_BORDER_COLOR_FLOAT_OPAQUE_BLACK,
+			VK_SAMPLER_ADDRESS_MODE_REPEAT, 0.0f, false, 1.0f, false, VK_COMPARE_OP_NEVER, 0.0f, 1.0f, VK_BORDER_COLOR_FLOAT_OPAQUE_BLACK,
 			false, *Sampler, *Image, *ImageMemory, *ImageView)) {
 			return false;
 		}
@@ -112,11 +112,11 @@ class Sample : public ShaderExample {
 				  static_cast<float>(std::rand() % 61),
 				  static_cast<float>(std::rand() % 21)
 				};
-				float speed = 0.3f + 0.005f * static_cast<float>(std::rand() % 101) + color[0] * 0.3f;
+				float speed = 0.1f + 0.01f * static_cast<float>(std::rand() % 101);
 				particles.insert(particles.end(), position.begin(), position.end());
 				particles.push_back(1.0f);
 				particles.insert(particles.end(), color.begin(), color.end());
-				particles.push_back(speed*0.5f);
+				particles.push_back(speed);
 			}
 
 			InitVkDestroyer(LogicalDevice, VertexBuffer);
@@ -484,7 +484,7 @@ class Sample : public ShaderExample {
 		SpecifyPipelineViewportAndScissorTestState(viewport_infos, viewport_state_create_info);
 
 		VkPipelineRasterizationStateCreateInfo rasterization_state_create_info;
-		SpecifyPipelineRasterizationState(false, false, VK_POLYGON_MODE_FILL, VK_CULL_MODE_BACK_BIT, VK_FRONT_FACE_COUNTER_CLOCKWISE, false, 0.0f, 1.0f, 0.0f, 1.0f, rasterization_state_create_info);
+		SpecifyPipelineRasterizationState(false, false, VK_POLYGON_MODE_FILL, VK_CULL_MODE_BACK_BIT, VK_FRONT_FACE_COUNTER_CLOCKWISE, true, 0.0f, 1.0f, 0.0f, 1.0f, rasterization_state_create_info);
 
 		VkPipelineMultisampleStateCreateInfo multisample_state_create_info;
 		SpecifyPipelineMultisampleState(VK_SAMPLE_COUNT_1_BIT, false, 0.0f, nullptr, false, false, multisample_state_create_info);
@@ -495,10 +495,10 @@ class Sample : public ShaderExample {
 		std::vector<VkPipelineColorBlendAttachmentState> attachment_blend_states = {
 		  {
 			true,                                 // VkBool32                 blendEnable
-			VK_BLEND_FACTOR_SRC_ALPHA,            // VkBlendFactor            srcColorBlendFactor
+			VK_BLEND_FACTOR_SRC_ALPHA,				  // VkBlendFactor            srcColorBlendFactor
 			VK_BLEND_FACTOR_ONE,                  // VkBlendFactor            dstColorBlendFactor
 			VK_BLEND_OP_ADD,                      // VkBlendOp                colorBlendOp
-			VK_BLEND_FACTOR_ONE,                  // VkBlendFactor            srcAlphaBlendFactor
+			VK_BLEND_FACTOR_SRC_ALPHA,                  // VkBlendFactor            srcAlphaBlendFactor
 			VK_BLEND_FACTOR_ONE,                  // VkBlendFactor            dstAlphaBlendFactor
 			VK_BLEND_OP_ADD,                      // VkBlendOp                alphaBlendOp
 			VK_COLOR_COMPONENT_R_BIT |            // VkColorComponentFlags    colorWriteMask
@@ -648,7 +648,7 @@ class Sample : public ShaderExample {
 			}
 
 			// Drawing
-			BeginRenderPass(command_buffer, *RenderPass, framebuffer, { { 0, 0 }, Swapchain.Size }, { { 0.1f, 0.2f, 0.3f, 1.0f },{ 1.0f, 0 } }, VK_SUBPASS_CONTENTS_INLINE);
+			BeginRenderPass(command_buffer, *RenderPass, framebuffer, { { 0, 0 }, Swapchain.Size }, { { 0.0f, 0.0f, 0.0f, 1.0f },{ 1.0f, 0 } }, VK_SUBPASS_CONTENTS_INLINE);
 
 			VkViewport viewport = {
 			  0.0f,                                       // float    x

@@ -8,10 +8,14 @@ layout( set = 0, binding = 1 ) uniform sampler2D ImageSampler;
 layout( location = 0 ) out vec4 frag_color;
 
 void main() {
-  float alpha = 1.0 - dot( geom_texcoord, geom_texcoord );
+  
   //if( 0.2 > alpha ) {
   //  discard;
   //}
   vec4 texcolor = texture( ImageSampler, geom_texcoord );
-  frag_color = vec4( texcolor.rgb, 1 );
+  vec4 color = vec4( 0.35,0.15,0.05, texcolor.a);
+  float brightness = (texcolor.r + texcolor.g + texcolor.b)/3;
+  //if(texcolor.a>0)frag_color = vec4((color.rgb+ texcolor.rgb)/2,1);
+  //else frag_color = vec4((color.rgb+ texcolor.rgb)/2,0);
+  frag_color = vec4(color.rgb*brightness, texcolor.a);
 }

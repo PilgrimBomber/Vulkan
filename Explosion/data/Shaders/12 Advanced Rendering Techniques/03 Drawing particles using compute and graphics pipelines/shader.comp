@@ -9,7 +9,7 @@ layout( push_constant ) uniform TimeState {
   float TotalTime;
 } PushConstant;
 
-const uint PARTICLES_COUNT = 200;
+const uint PARTICLES_COUNT = 1000;
 
 void main() {
   if( gl_GlobalInvocationID.x < PARTICLES_COUNT ) {
@@ -18,7 +18,7 @@ void main() {
 
     vec3 speed = normalize( position.xyz  ) * color.w + vec3(0,0.1,0);
     
-    position.xyz += speed * PushConstant.DeltaTime;
+    position.xyz += speed * PushConstant.DeltaTime*0.5f;
     
     imageStore( StorageTexelBuffer, int(gl_GlobalInvocationID.x * 2), position );
   }
