@@ -106,13 +106,13 @@ class Sample : public ShaderExample {
 
 			for (uint32_t i = 0; i < PARTICLES_COUNT; ++i) {
 				OrbitingCamera particle({ 0.0f, 0.0f, 0.0f }, 0.05f, static_cast<float>((std::rand() % 361) - 180), static_cast<float>((std::rand() % 181) - 90));
-				Vector3 position = particle.GetPosition();
+				Vector3 position = CreateParticlePosition(0.01f); //particle.GetPosition();
 				Vector3 color = 0.0075f * Vector3{
 				  static_cast<float>(std::rand() % 121 + 60),
 				  static_cast<float>(std::rand() % 61),
 				  static_cast<float>(std::rand() % 21)
 				};
-				float speed = 0.1f + 0.01f * static_cast<float>(std::rand() % 101);
+				float speed = 0.01f * static_cast<float>(std::rand() % 201);
 				particles.insert(particles.end(), position.begin(), position.end());
 				particles.push_back(1.0f);
 				particles.insert(particles.end(), color.begin(), color.end());
@@ -213,7 +213,7 @@ class Sample : public ShaderExample {
 		if (!CreateDescriptorPool(*LogicalDevice, false, 2, descriptor_pool_sizes, *DescriptorPool)) {
 			return false;
 		}
-
+		
 		if (!AllocateDescriptorSets(*LogicalDevice, *DescriptorPool, { *DescriptorSetLayout[0], *DescriptorSetLayout[1] }, DescriptorSets)) {
 			return false;
 		}
@@ -359,7 +359,7 @@ class Sample : public ShaderExample {
 		VkPushConstantRange push_constant_range = {
 		  VK_SHADER_STAGE_COMPUTE_BIT,    // VkShaderStageFlags     stageFlags
 		  0,                              // uint32_t               offset
-		  sizeof(float)                 // uint32_t               size
+		  2*sizeof(float)                 // uint32_t               size
 		};
 
 		InitVkDestroyer(LogicalDevice, ComputePipelineLayout);
@@ -518,7 +518,7 @@ class Sample : public ShaderExample {
 		SpecifyPipelineDynamicStates(dynamic_states, dynamic_state_create_info);
 
 		VkPushConstantRange push_constant_range2 = {
-		  VK_SHADER_STAGE_GEOMETRY_BIT,    // VkShaderStageFlags     stageFlags
+		  VK_SHADER_STAGE_GEOMETRY_BIT | VK_SHADER_STAGE_FRAGMENT_BIT,    // VkShaderStageFlags     stageFlags
 		  0,                              // uint32_t               offset
 		  sizeof(float)                 // uint32_t               size
 		};
@@ -576,14 +576,15 @@ class Sample : public ShaderExample {
 
 		BindPipelineObject(ComputeCommandBuffer, VK_PIPELINE_BIND_POINT_COMPUTE, *ComputePipeline);
 
+		totalTimeRunning += TimerState.GetDeltaTime();
 		 
 		struct timeData {
 			float deltaTime;
 			float totalTime;
 		}timeData;
 		timeData.deltaTime = TimerState.GetDeltaTime();
-		timeData.totalTime = TimerState.GetTime();
-		ProvideDataToShadersThroughPushConstants(ComputeCommandBuffer, *ComputePipelineLayout, VK_SHADER_STAGE_COMPUTE_BIT, 0, sizeof(float), & timeData);
+		timeData.totalTime = totalTimeRunning;
+		ProvideDataToShadersThroughPushConstants(ComputeCommandBuffer, *ComputePipelineLayout, VK_SHADER_STAGE_COMPUTE_BIT, 0, 2*sizeof(float), & timeData);
 
 		DispatchComputeWork(ComputeCommandBuffer, PARTICLES_COUNT / 32 + 1, 1, 1);
 
@@ -680,8 +681,9 @@ class Sample : public ShaderExample {
 			BindPipelineObject(command_buffer, VK_PIPELINE_BIND_POINT_GRAPHICS, *GraphicsPipeline);
 
 			
-			totalTimeRunning += TimerState.GetDeltaTime();
-			ProvideDataToShadersThroughPushConstants(command_buffer, *GraphicsPipelineLayout, VK_SHADER_STAGE_GEOMETRY_BIT, 0, sizeof(float), &totalTimeRunning);
+			
+			
+			ProvideDataToShadersThroughPushConstants(command_buffer, *GraphicsPipelineLayout, VK_SHADER_STAGE_GEOMETRY_BIT | VK_SHADER_STAGE_FRAGMENT_BIT, 0, sizeof(float), &totalTimeRunning);
 
 			DrawGeometry(command_buffer, PARTICLES_COUNT, 1, 0, 0);
 
@@ -753,6 +755,16 @@ class Sample : public ShaderExample {
 			}
 		}
 		return true;
+	}
+
+	Vector3 CreateParticlePosition(float distance)
+	{
+		Vector3 pos = Vector3{
+				  static_cast<float>((std::rand() % 201 - 100) * 0.01f * distance),
+				  static_cast<float>((std::rand() % 201 - 100) * 0.01f * distance),
+				  static_cast<float>((std::rand() % 201 - 100) * 0.01f * distance)
+		};
+		return pos;
 	}
 
 };

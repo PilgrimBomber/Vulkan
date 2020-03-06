@@ -16,7 +16,7 @@ layout(push_constant) uniform TimeInfo{
     float totalTime;
 }timeInfo;
 
-float SIZE =0.1+0.05*timeInfo.totalTime;
+float SIZE =0.3+0.02*timeInfo.totalTime;
 
 void main() {
   
