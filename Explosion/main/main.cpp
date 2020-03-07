@@ -54,7 +54,7 @@ class Sample : public ShaderExample {
 		int width = 1;
 		int height = 1;
 		std::vector<unsigned char> image_data;
-		if (!LoadTextureDataFromFile("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/Explosion/data/Textures/ExplosionTest.png", 4, image_data, &width, &height)) {
+		if (!LoadTextureDataFromFile("data/Textures/ExplosionTest.png", 4, image_data, &width, &height)) {
 			return false;
 		}
 
@@ -103,7 +103,7 @@ class Sample : public ShaderExample {
 
 		{
 			std::vector<float> particles;
-
+			srand(TimerState.GetTime());
 			for (uint32_t i = 0; i < PARTICLES_COUNT; ++i) {
 				OrbitingCamera particle({ 0.0f, 0.0f, 0.0f }, 0.05f, static_cast<float>((std::rand() % 361) - 180), static_cast<float>((std::rand() % 181) - 90));
 				Vector3 position = CreateParticlePosition(0.01f); //particle.GetPosition();
@@ -335,7 +335,7 @@ class Sample : public ShaderExample {
 		// Compute pipeline
 
 		std::vector<unsigned char> compute_shader_spirv;
-		if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/Explosion/data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.comp.spv", compute_shader_spirv)) {
+		if (!GetBinaryFileContents("data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.comp.spv", compute_shader_spirv)) {
 			return false;
 		}
 
@@ -375,7 +375,7 @@ class Sample : public ShaderExample {
 		// Graphics pipeline
 
 		std::vector<unsigned char> vertex_shader_spirv;
-		if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/Explosion/data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.vert.spv", vertex_shader_spirv)) {
+		if (!GetBinaryFileContents("data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.vert.spv", vertex_shader_spirv)) {
 			return false;
 		}
 
@@ -385,7 +385,7 @@ class Sample : public ShaderExample {
 		}
 
 		std::vector<unsigned char> geometry_shader_spirv;
-		if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/Explosion/data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.geom.spv", geometry_shader_spirv)) {
+		if (!GetBinaryFileContents("data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.geom.spv", geometry_shader_spirv)) {
 			return false;
 		}
 
@@ -395,7 +395,7 @@ class Sample : public ShaderExample {
 		}
 
 		std::vector<unsigned char> fragment_shader_spirv;
-		if (!GetBinaryFileContents("C:/Users/timon/source/repos/VulkanCppWindowedProgram1/Explosion/data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.frag.spv", fragment_shader_spirv)) {
+		if (!GetBinaryFileContents("data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.frag.spv", fragment_shader_spirv)) {
 			return false;
 		}
 		VkDestroyer<VkShaderModule> fragment_shader_module(LogicalDevice);

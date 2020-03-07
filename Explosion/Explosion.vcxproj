@@ -96,14 +96,14 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_WIN32;_WINDOWS;VK_USE_PLATFORM_WIN32_KHR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\Config;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Core;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Main;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\CommandBuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Descriptor Sets;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\GraphicsAndComputePipelines;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Helper;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ImagePresentation;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RecordingAndDrawing;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RenderPassesAndFramebuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ResourcesAndMemory;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\utility;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\extern;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\Explosion\core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;$(SolutionDir)VulkanTestVL\Config;$(SolutionDir)VulkanTestVL\src\Core;$(SolutionDir)VulkanTestVL\src\Main;$(SolutionDir)VulkanTestVL\src\CommandBuffers;$(SolutionDir)VulkanTestVL\src\Descriptor Sets;$(SolutionDir)VulkanTestVL\src\GraphicsAndComputePipelines;$(SolutionDir)VulkanTestVL\src\Helper;$(SolutionDir)VulkanTestVL\src\ImagePresentation;$(SolutionDir)VulkanTestVL\src\RecordingAndDrawing;$(SolutionDir)VulkanTestVL\src\RenderPassesAndFramebuffers;$(SolutionDir)VulkanTestVL\src\ResourcesAndMemory;$(SolutionDir)VulkanTestVL\src\utility;$(SolutionDir)VulkanTestVL\extern;$(ProjectDir)core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\timon\source\repos\VulkanCppWindowedProgram1\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>VulkanTestVL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -114,12 +114,12 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_WIN32;_WINDOWS;VK_USE_PLATFORM_WIN32_KHR;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\Config;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Core;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Main;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\CommandBuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Descriptor Sets;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\GraphicsAndComputePipelines;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Helper;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ImagePresentation;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RecordingAndDrawing;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RenderPassesAndFramebuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ResourcesAndMemory;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\utility;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\extern;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\Explosion\core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;$(SolutionDir)VulkanTestVL\Config;$(SolutionDir)VulkanTestVL\src\Core;$(SolutionDir)VulkanTestVL\src\Main;$(SolutionDir)VulkanTestVL\src\CommandBuffers;$(SolutionDir)VulkanTestVL\src\Descriptor Sets;$(SolutionDir)VulkanTestVL\src\GraphicsAndComputePipelines;$(SolutionDir)VulkanTestVL\src\Helper;$(SolutionDir)VulkanTestVL\src\ImagePresentation;$(SolutionDir)VulkanTestVL\src\RecordingAndDrawing;$(SolutionDir)VulkanTestVL\src\RenderPassesAndFramebuffers;$(SolutionDir)VulkanTestVL\src\ResourcesAndMemory;$(SolutionDir)VulkanTestVL\src\utility;$(SolutionDir)VulkanTestVL\extern;$(ProjectDir)core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\timon\source\repos\VulkanCppWindowedProgram1\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>VulkanTestVL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -130,12 +130,12 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_WIN32;_WINDOWS;VK_USE_PLATFORM_WIN32_KHR;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\Config;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Core;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Main;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\CommandBuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Descriptor Sets;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\GraphicsAndComputePipelines;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Helper;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ImagePresentation;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RecordingAndDrawing;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RenderPassesAndFramebuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ResourcesAndMemory;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\utility;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\extern;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\Explosion\core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;$(SolutionDir)VulkanTestVL\Config;$(SolutionDir)VulkanTestVL\src\Core;$(SolutionDir)VulkanTestVL\src\Main;$(SolutionDir)VulkanTestVL\src\CommandBuffers;$(SolutionDir)VulkanTestVL\src\Descriptor Sets;$(SolutionDir)VulkanTestVL\src\GraphicsAndComputePipelines;$(SolutionDir)VulkanTestVL\src\Helper;$(SolutionDir)VulkanTestVL\src\ImagePresentation;$(SolutionDir)VulkanTestVL\src\RecordingAndDrawing;$(SolutionDir)VulkanTestVL\src\RenderPassesAndFramebuffers;$(SolutionDir)VulkanTestVL\src\ResourcesAndMemory;$(SolutionDir)VulkanTestVL\src\utility;$(SolutionDir)VulkanTestVL\extern;$(ProjectDir)core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\timon\source\repos\VulkanCppWindowedProgram1\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>VulkanTestVL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -149,14 +149,14 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_WIN32;_WINDOWS;VK_USE_PLATFORM_WIN32_KHR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\Config;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Core;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Main;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\CommandBuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Descriptor Sets;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\GraphicsAndComputePipelines;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\Helper;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ImagePresentation;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RecordingAndDrawing;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\RenderPassesAndFramebuffers;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\ResourcesAndMemory;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\src\utility;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\VulkanTestVL\extern;C:\Users\timon\source\repos\VulkanCppWindowedProgram1\Explosion\core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Third-Party\Include;$(SolutionDir)VulkanTestVL\Config;$(SolutionDir)VulkanTestVL\src\Core;$(SolutionDir)VulkanTestVL\src\Main;$(SolutionDir)VulkanTestVL\src\CommandBuffers;$(SolutionDir)VulkanTestVL\src\Descriptor Sets;$(SolutionDir)VulkanTestVL\src\GraphicsAndComputePipelines;$(SolutionDir)VulkanTestVL\src\Helper;$(SolutionDir)VulkanTestVL\src\ImagePresentation;$(SolutionDir)VulkanTestVL\src\RecordingAndDrawing;$(SolutionDir)VulkanTestVL\src\RenderPassesAndFramebuffers;$(SolutionDir)VulkanTestVL\src\ResourcesAndMemory;$(SolutionDir)VulkanTestVL\src\utility;$(SolutionDir)VulkanTestVL\extern;$(ProjectDir)core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\timon\source\repos\VulkanCppWindowedProgram1\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>VulkanTestVL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
