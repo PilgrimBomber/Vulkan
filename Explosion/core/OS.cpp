@@ -143,6 +143,7 @@ namespace VulkanLibrary {
             Sample.MouseReset();
           }
         }
+		Sleep(1);
       }
     }
 
