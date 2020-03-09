@@ -85,7 +85,7 @@ namespace VulkanLibrary {
     if( !RegisterClassEx( &window_class ) ) {
       return;
     }
-    WindowParameters.HWnd = CreateWindow( TEXT("VulkanLibrary"), TEXT("Explosion"), WS_OVERLAPPEDWINDOW | WS_MAXIMIZE, x, y, width, height, nullptr, nullptr, WindowParameters.HInstance, nullptr );
+    WindowParameters.HWnd = CreateWindow( TEXT("VulkanLibrary"), TEXT("Explosion"), WS_POPUP | WS_MAXIMIZE, 0, 0, GetSystemMetrics(SM_CXFULLSCREEN), GetSystemMetrics(SM_CYFULLSCREEN), nullptr, nullptr, WindowParameters.HInstance, nullptr );
     if( !WindowParameters.HWnd ) {
       return;
     }

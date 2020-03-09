@@ -1,4 +1,4 @@
-#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+//#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 #include "SampleFramework.h"
 #include "OrbitingCamera.h"
 
@@ -340,7 +340,7 @@ class Sample : public ShaderExample {
 		// Compute pipeline
 
 		std::vector<unsigned char> compute_shader_spirv;
-		if (!GetBinaryFileContents("data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.comp.spv", compute_shader_spirv)) {
+		if (!GetBinaryFileContents("data/Shaders/shader.comp.spv", compute_shader_spirv)) {
 			return false;
 		}
 
@@ -380,7 +380,7 @@ class Sample : public ShaderExample {
 		// Graphics pipeline
 
 		std::vector<unsigned char> vertex_shader_spirv;
-		if (!GetBinaryFileContents("data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.vert.spv", vertex_shader_spirv)) {
+		if (!GetBinaryFileContents("data/Shaders/shader.vert.spv", vertex_shader_spirv)) {
 			return false;
 		}
 
@@ -390,7 +390,7 @@ class Sample : public ShaderExample {
 		}
 
 		std::vector<unsigned char> geometry_shader_spirv;
-		if (!GetBinaryFileContents("data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.geom.spv", geometry_shader_spirv)) {
+		if (!GetBinaryFileContents("data/Shaders/shader.geom.spv", geometry_shader_spirv)) {
 			return false;
 		}
 
@@ -400,7 +400,7 @@ class Sample : public ShaderExample {
 		}
 
 		std::vector<unsigned char> fragment_shader_spirv;
-		if (!GetBinaryFileContents("data/Shaders/12 Advanced Rendering Techniques/03 Drawing particles using compute and graphics pipelines/shader.frag.spv", fragment_shader_spirv)) {
+		if (!GetBinaryFileContents("data/Shaders/shader.frag.spv", fragment_shader_spirv)) {
 			return false;
 		}
 		VkDestroyer<VkShaderModule> fragment_shader_module(LogicalDevice);

@@ -43,16 +43,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="data\Shaders\12 Advanced Rendering Techniques\03 Drawing particles using compute and graphics pipelines\shader.comp">
+    <None Include="data\Shaders\shader.comp">
       <Filter>Shader</Filter>
     </None>
-    <None Include="data\Shaders\12 Advanced Rendering Techniques\03 Drawing particles using compute and graphics pipelines\shader.frag">
+    <None Include="data\Shaders\shader.frag">
       <Filter>Shader</Filter>
     </None>
-    <None Include="data\Shaders\12 Advanced Rendering Techniques\03 Drawing particles using compute and graphics pipelines\shader.geom">
+    <None Include="data\Shaders\shader.geom">
       <Filter>Shader</Filter>
     </None>
-    <None Include="data\Shaders\12 Advanced Rendering Techniques\03 Drawing particles using compute and graphics pipelines\shader.vert">
+    <None Include="data\Shaders\shader.vert">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>
