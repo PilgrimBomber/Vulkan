@@ -1,3 +1,4 @@
+#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 #include "SampleFramework.h"
 #include "OrbitingCamera.h"
 
@@ -99,41 +100,43 @@ class Sample : public ShaderExample {
 		}
 		ComputeCommandBuffer = command_buffers[0];
 
-		// Vertex buffer / storage texel buffer
+		CreateParticlesAndVertexBuffer();
 
-		{
-			std::vector<float> particles;
-			srand(TimerState.GetTime());
-			for (uint32_t i = 0; i < PARTICLES_COUNT; ++i) {
-				OrbitingCamera particle({ 0.0f, 0.0f, 0.0f }, 0.05f, static_cast<float>((std::rand() % 361) - 180), static_cast<float>((std::rand() % 181) - 90));
-				Vector3 position = CreateParticlePosition(0.01f); //particle.GetPosition();
-				Vector3 color = 0.0075f * Vector3{
-				  static_cast<float>(std::rand() % 121 + 60),
-				  static_cast<float>(std::rand() % 61),
-				  static_cast<float>(std::rand() % 21)
-				};
-				float speed = 0.01f * static_cast<float>(std::rand() % 201);
-				particles.insert(particles.end(), position.begin(), position.end());
-				particles.push_back(1.0f);
-				particles.insert(particles.end(), color.begin(), color.end());
-				particles.push_back(speed);
-			}
+		//// Vertex buffer / storage texel buffer
 
-			InitVkDestroyer(LogicalDevice, VertexBuffer);
-			InitVkDestroyer(LogicalDevice, VertexBufferMemory);
-			InitVkDestroyer(LogicalDevice, VertexBufferView);
-			if (!CreateStorageTexelBuffer(PhysicalDevice, *LogicalDevice, VK_FORMAT_R32G32B32A32_SFLOAT, sizeof(particles[0]) * particles.size(),
-				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT, false,
-				*VertexBuffer, *VertexBufferMemory, *VertexBufferView)) {
-				return false;
-			}
+		//{
+		//	std::vector<float> particles;
+		//	srand(TimerState.GetTime());
+		//	for (uint32_t i = 0; i < PARTICLES_COUNT; ++i) {
+		//		OrbitingCamera particle({ 0.0f, 0.0f, 0.0f }, 0.05f, static_cast<float>((std::rand() % 361) - 180), static_cast<float>((std::rand() % 181) - 90));
+		//		Vector3 position = CreateParticlePosition(0.01f); //particle.GetPosition();
+		//		Vector3 color = 0.0075f * Vector3{
+		//		  static_cast<float>(std::rand() % 121 + 60),
+		//		  static_cast<float>(std::rand() % 61),
+		//		  static_cast<float>(std::rand() % 21)
+		//		};
+		//		float speed = 0.01f * static_cast<float>(std::rand() % 201);
+		//		particles.insert(particles.end(), position.begin(), position.end());
+		//		particles.push_back(1.0f);
+		//		particles.insert(particles.end(), color.begin(), color.end());
+		//		particles.push_back(speed);
+		//	}
 
-			if (!UseStagingBufferToUpdateBufferWithDeviceLocalMemoryBound(PhysicalDevice, *LogicalDevice, sizeof(particles[0]) * particles.size(),
-				&particles[0], *VertexBuffer, 0, 0, VK_ACCESS_TRANSFER_WRITE_BIT, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, VK_PIPELINE_STAGE_VERTEX_INPUT_BIT,
-				GraphicsQueue.Handle, FrameResources.front().CommandBuffer, {})) {
-				return false;
-			}
-		}
+		//	InitVkDestroyer(LogicalDevice, VertexBuffer);
+		//	InitVkDestroyer(LogicalDevice, VertexBufferMemory);
+		//	InitVkDestroyer(LogicalDevice, VertexBufferView);
+		//	if (!CreateStorageTexelBuffer(PhysicalDevice, *LogicalDevice, VK_FORMAT_R32G32B32A32_SFLOAT, sizeof(particles[0]) * particles.size(),
+		//		VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT, false,
+		//		*VertexBuffer, *VertexBufferMemory, *VertexBufferView)) {
+		//		return false;
+		//	}
+
+		//	if (!UseStagingBufferToUpdateBufferWithDeviceLocalMemoryBound(PhysicalDevice, *LogicalDevice, sizeof(particles[0]) * particles.size(),
+		//		&particles[0], *VertexBuffer, 0, 0, VK_ACCESS_TRANSFER_WRITE_BIT, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, VK_PIPELINE_STAGE_VERTEX_INPUT_BIT,
+		//		GraphicsQueue.Handle, FrameResources.front().CommandBuffer, {})) {
+		//		return false;
+		//	}
+		//}
 
 		// Staging buffer
 		InitVkDestroyer(LogicalDevice, StagingBuffer);
@@ -157,107 +160,109 @@ class Sample : public ShaderExample {
 			return false;
 		}
 
-		// Descriptor sets with uniform buffer
 
-		std::vector<VkDescriptorSetLayoutBinding> descriptor_set_layout_bindings = {
-		  {
-			0,                                          // uint32_t             binding
-			VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,          // VkDescriptorType     descriptorType
-			1,                                          // uint32_t             descriptorCount
-			VK_SHADER_STAGE_VERTEX_BIT |                // VkShaderStageFlags   stageFlags
-			VK_SHADER_STAGE_GEOMETRY_BIT,
-			nullptr                                     // const VkSampler    * pImmutableSamplers
-		  },
-		  {
-			1,                                          // uint32_t             binding
-			VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,  // VkDescriptorType     descriptorType
-			1,                                          // uint32_t             descriptorCount
-			VK_SHADER_STAGE_FRAGMENT_BIT,               // VkShaderStageFlags   stageFlags
-			nullptr                                     // const VkSampler    * pImmutableSamplers
-		  },
-		  {
-			0,                                          // uint32_t             binding
-			VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER,    // VkDescriptorType     descriptorType
-			1,                                          // uint32_t             descriptorCount
-			VK_SHADER_STAGE_COMPUTE_BIT,                // VkShaderStageFlags   stageFlags
-			nullptr                                     // const VkSampler    * pImmutableSamplers
-		  }		  
-		};
+		CreateDescriptorSets();
+		//// Descriptor sets with uniform buffer
 
-		DescriptorSetLayout.resize(2);
-		InitVkDestroyer(LogicalDevice, DescriptorSetLayout[0]);
-		InitVkDestroyer(LogicalDevice, DescriptorSetLayout[1]);
-		if (!CreateDescriptorSetLayout(*LogicalDevice, { descriptor_set_layout_bindings[0],descriptor_set_layout_bindings[1] }, *DescriptorSetLayout[0])) {
-			return false;
-		}
-		if (!CreateDescriptorSetLayout(*LogicalDevice, { descriptor_set_layout_bindings[2] }, *DescriptorSetLayout[1])) {
-			return false;
-		}
-		
+		//std::vector<VkDescriptorSetLayoutBinding> descriptor_set_layout_bindings = {
+		//  {
+		//	0,                                          // uint32_t             binding
+		//	VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,          // VkDescriptorType     descriptorType
+		//	1,                                          // uint32_t             descriptorCount
+		//	VK_SHADER_STAGE_VERTEX_BIT |                // VkShaderStageFlags   stageFlags
+		//	VK_SHADER_STAGE_GEOMETRY_BIT,
+		//	nullptr                                     // const VkSampler    * pImmutableSamplers
+		//  },
+		//  {
+		//	1,                                          // uint32_t             binding
+		//	VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,  // VkDescriptorType     descriptorType
+		//	1,                                          // uint32_t             descriptorCount
+		//	VK_SHADER_STAGE_FRAGMENT_BIT,               // VkShaderStageFlags   stageFlags
+		//	nullptr                                     // const VkSampler    * pImmutableSamplers
+		//  },
+		//  {
+		//	0,                                          // uint32_t             binding
+		//	VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER,    // VkDescriptorType     descriptorType
+		//	1,                                          // uint32_t             descriptorCount
+		//	VK_SHADER_STAGE_COMPUTE_BIT,                // VkShaderStageFlags   stageFlags
+		//	nullptr                                     // const VkSampler    * pImmutableSamplers
+		//  }		  
+		//};
 
-		std::vector<VkDescriptorPoolSize> descriptor_pool_sizes = {
-		  {
-			VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,          // VkDescriptorType     type
-			1                                           // uint32_t             descriptorCount
-		  },
-		  {
-			VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER,    // VkDescriptorType     type
-			1                                           // uint32_t             descriptorCount
-		  },
-		  {
-			VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,  // VkDescriptorType     type
-			1                                           // uint32_t             descriptorCount
-		  }
-		};
-		InitVkDestroyer(LogicalDevice, DescriptorPool);
-		if (!CreateDescriptorPool(*LogicalDevice, false, 2, descriptor_pool_sizes, *DescriptorPool)) {
-			return false;
-		}
-		
-		if (!AllocateDescriptorSets(*LogicalDevice, *DescriptorPool, { *DescriptorSetLayout[0], *DescriptorSetLayout[1] }, DescriptorSets)) {
-			return false;
-		}
+		//DescriptorSetLayout.resize(2);
+		//InitVkDestroyer(LogicalDevice, DescriptorSetLayout[0]);
+		//InitVkDestroyer(LogicalDevice, DescriptorSetLayout[1]);
+		//if (!CreateDescriptorSetLayout(*LogicalDevice, { descriptor_set_layout_bindings[0],descriptor_set_layout_bindings[1] }, *DescriptorSetLayout[0])) {
+		//	return false;
+		//}
+		//if (!CreateDescriptorSetLayout(*LogicalDevice, { descriptor_set_layout_bindings[2] }, *DescriptorSetLayout[1])) {
+		//	return false;
+		//}
+		//
 
-		BufferDescriptorInfo buffer_descriptor_update = {
-		  DescriptorSets[0],                          // VkDescriptorSet                      TargetDescriptorSet
-		  0,                                          // uint32_t                             TargetDescriptorBinding
-		  0,                                          // uint32_t                             TargetArrayElement
-		  VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,          // VkDescriptorType                     TargetDescriptorType
-		  {                                           // std::vector<VkDescriptorBufferInfo>  BufferInfos
-			{
-			  *UniformBuffer,                           // VkBuffer                             buffer
-			  0,                                        // VkDeviceSize                         offset
-			  VK_WHOLE_SIZE                             // VkDeviceSize                         range
-			}
-		  }
-		};
-		ImageDescriptorInfo image_descriptor_update = {
-		  DescriptorSets[0],                          // VkDescriptorSet                      TargetDescriptorSet
-		  1,                                          // uint32_t                             TargetDescriptorBinding
-		  0,                                          // uint32_t                             TargetArrayElement
-		  VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,  // VkDescriptorType                     TargetDescriptorType
-		  {                                           // std::vector<VkDescriptorImageInfo>   ImageInfos
-			{
-			  *Sampler,                                 // VkSampler                            sampler
-			  *ImageView,                               // VkImageView                          imageView
-			  VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL  // VkImageLayout                        imageLayout
-			}
-		  }
-		};
-		TexelBufferDescriptorInfo storage_texel_buffer_descriptor_update = {
-		  DescriptorSets[1],                          // VkDescriptorSet                      TargetDescriptorSet
-		  0,                                          // uint32_t                             TargetDescriptorBinding
-		  0,                                          // uint32_t                             TargetArrayElement
-		  VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER,    // VkDescriptorType                     TargetDescriptorType
-		  {                                           // std::vector<VkBufferView>            TexelBufferViews
-			{
-			  *VertexBufferView
-			}
-		  }
-		};
+		//std::vector<VkDescriptorPoolSize> descriptor_pool_sizes = {
+		//  {
+		//	VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,          // VkDescriptorType     type
+		//	1                                           // uint32_t             descriptorCount
+		//  },
+		//  {
+		//	VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER,    // VkDescriptorType     type
+		//	1                                           // uint32_t             descriptorCount
+		//  },
+		//  {
+		//	VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,  // VkDescriptorType     type
+		//	1                                           // uint32_t             descriptorCount
+		//  }
+		//};
+		//InitVkDestroyer(LogicalDevice, DescriptorPool);
+		//if (!CreateDescriptorPool(*LogicalDevice, false, 2, descriptor_pool_sizes, *DescriptorPool)) {
+		//	return false;
+		//}
+		//
+		//if (!AllocateDescriptorSets(*LogicalDevice, *DescriptorPool, { *DescriptorSetLayout[0], *DescriptorSetLayout[1] }, DescriptorSets)) {
+		//	return false;
+		//}
 
-		
-		UpdateDescriptorSets(*LogicalDevice, {image_descriptor_update}, { buffer_descriptor_update }, { storage_texel_buffer_descriptor_update }, {});
+		//BufferDescriptorInfo buffer_descriptor_update = {
+		//  DescriptorSets[0],                          // VkDescriptorSet                      TargetDescriptorSet
+		//  0,                                          // uint32_t                             TargetDescriptorBinding
+		//  0,                                          // uint32_t                             TargetArrayElement
+		//  VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,          // VkDescriptorType                     TargetDescriptorType
+		//  {                                           // std::vector<VkDescriptorBufferInfo>  BufferInfos
+		//	{
+		//	  *UniformBuffer,                           // VkBuffer                             buffer
+		//	  0,                                        // VkDeviceSize                         offset
+		//	  VK_WHOLE_SIZE                             // VkDeviceSize                         range
+		//	}
+		//  }
+		//};
+		//ImageDescriptorInfo image_descriptor_update = {
+		//  DescriptorSets[0],                          // VkDescriptorSet                      TargetDescriptorSet
+		//  1,                                          // uint32_t                             TargetDescriptorBinding
+		//  0,                                          // uint32_t                             TargetArrayElement
+		//  VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,  // VkDescriptorType                     TargetDescriptorType
+		//  {                                           // std::vector<VkDescriptorImageInfo>   ImageInfos
+		//	{
+		//	  *Sampler,                                 // VkSampler                            sampler
+		//	  *ImageView,                               // VkImageView                          imageView
+		//	  VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL  // VkImageLayout                        imageLayout
+		//	}
+		//  }
+		//};
+		//TexelBufferDescriptorInfo storage_texel_buffer_descriptor_update = {
+		//  DescriptorSets[1],                          // VkDescriptorSet                      TargetDescriptorSet
+		//  0,                                          // uint32_t                             TargetDescriptorBinding
+		//  0,                                          // uint32_t                             TargetArrayElement
+		//  VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER,    // VkDescriptorType                     TargetDescriptorType
+		//  {                                           // std::vector<VkBufferView>            TexelBufferViews
+		//	{
+		//	  *VertexBufferView
+		//	}
+		//  }
+		//};
+
+		//
+		//UpdateDescriptorSets(*LogicalDevice, {image_descriptor_update}, { buffer_descriptor_update }, { storage_texel_buffer_descriptor_update }, {});
 
 		// Render pass
 		std::vector<VkAttachmentDescription> attachment_descriptions = {
@@ -552,6 +557,152 @@ class Sample : public ShaderExample {
 		return true;
 	}
 
+
+	bool CreateParticlesAndVertexBuffer()
+	{
+		// Vertex buffer / storage texel buffer
+
+		{
+			std::vector<float> particles;
+			srand(TimerState.GetTime());
+			for (uint32_t i = 0; i < PARTICLES_COUNT; ++i) {
+				OrbitingCamera particle({ 0.0f, 0.0f, 0.0f }, 0.05f, static_cast<float>((std::rand() % 361) - 180), static_cast<float>((std::rand() % 181) - 90));
+				Vector3 position = CreateParticlePosition(0.01f); //particle.GetPosition();
+				Vector3 color = 0.0075f * Vector3{
+				  static_cast<float>(std::rand() % 121 + 60),
+				  static_cast<float>(std::rand() % 61),
+				  static_cast<float>(std::rand() % 21)
+				};
+				float speed = 0.01f * static_cast<float>(std::rand() % 201);
+				particles.insert(particles.end(), position.begin(), position.end());
+				particles.push_back(1.0f);
+				particles.insert(particles.end(), color.begin(), color.end());
+				particles.push_back(speed);
+			}
+
+			InitVkDestroyer(LogicalDevice, VertexBuffer);
+			InitVkDestroyer(LogicalDevice, VertexBufferMemory);
+			InitVkDestroyer(LogicalDevice, VertexBufferView);
+			if (!CreateStorageTexelBuffer(PhysicalDevice, *LogicalDevice, VK_FORMAT_R32G32B32A32_SFLOAT, sizeof(particles[0]) * particles.size(),
+				VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT, false,
+				*VertexBuffer, *VertexBufferMemory, *VertexBufferView)) {
+				return false;
+			}
+
+			if (!UseStagingBufferToUpdateBufferWithDeviceLocalMemoryBound(PhysicalDevice, *LogicalDevice, sizeof(particles[0]) * particles.size(),
+				&particles[0], *VertexBuffer, 0, 0, VK_ACCESS_TRANSFER_WRITE_BIT, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, VK_PIPELINE_STAGE_VERTEX_INPUT_BIT,
+				GraphicsQueue.Handle, FrameResources.front().CommandBuffer, {})) {
+				return false;
+			}
+		}
+	}
+
+	bool CreateDescriptorSets()
+	{
+		// Descriptor sets with uniform buffer
+
+		std::vector<VkDescriptorSetLayoutBinding> descriptor_set_layout_bindings = {
+		  {
+			0,                                          // uint32_t             binding
+			VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,          // VkDescriptorType     descriptorType
+			1,                                          // uint32_t             descriptorCount
+			VK_SHADER_STAGE_VERTEX_BIT |                // VkShaderStageFlags   stageFlags
+			VK_SHADER_STAGE_GEOMETRY_BIT,
+			nullptr                                     // const VkSampler    * pImmutableSamplers
+		  },
+		  {
+			1,                                          // uint32_t             binding
+			VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,  // VkDescriptorType     descriptorType
+			1,                                          // uint32_t             descriptorCount
+			VK_SHADER_STAGE_FRAGMENT_BIT,               // VkShaderStageFlags   stageFlags
+			nullptr                                     // const VkSampler    * pImmutableSamplers
+		  },
+		  {
+			0,                                          // uint32_t             binding
+			VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER,    // VkDescriptorType     descriptorType
+			1,                                          // uint32_t             descriptorCount
+			VK_SHADER_STAGE_COMPUTE_BIT,                // VkShaderStageFlags   stageFlags
+			nullptr                                     // const VkSampler    * pImmutableSamplers
+		  }
+		};
+
+		DescriptorSetLayout.resize(2);
+		InitVkDestroyer(LogicalDevice, DescriptorSetLayout[0]);
+		InitVkDestroyer(LogicalDevice, DescriptorSetLayout[1]);
+		if (!CreateDescriptorSetLayout(*LogicalDevice, { descriptor_set_layout_bindings[0],descriptor_set_layout_bindings[1] }, *DescriptorSetLayout[0])) {
+			return false;
+		}
+		if (!CreateDescriptorSetLayout(*LogicalDevice, { descriptor_set_layout_bindings[2] }, *DescriptorSetLayout[1])) {
+			return false;
+		}
+
+
+		std::vector<VkDescriptorPoolSize> descriptor_pool_sizes = {
+		  {
+			VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,          // VkDescriptorType     type
+			1                                           // uint32_t             descriptorCount
+		  },
+		  {
+			VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER,    // VkDescriptorType     type
+			1                                           // uint32_t             descriptorCount
+		  },
+		  {
+			VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,  // VkDescriptorType     type
+			1                                           // uint32_t             descriptorCount
+		  }
+		};
+		InitVkDestroyer(LogicalDevice, DescriptorPool);
+		if (!CreateDescriptorPool(*LogicalDevice, false, 2, descriptor_pool_sizes, *DescriptorPool)) {
+			return false;
+		}
+
+		if (!AllocateDescriptorSets(*LogicalDevice, *DescriptorPool, { *DescriptorSetLayout[0], *DescriptorSetLayout[1] }, DescriptorSets)) {
+			return false;
+		}
+
+		BufferDescriptorInfo buffer_descriptor_update = {
+		  DescriptorSets[0],                          // VkDescriptorSet                      TargetDescriptorSet
+		  0,                                          // uint32_t                             TargetDescriptorBinding
+		  0,                                          // uint32_t                             TargetArrayElement
+		  VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,          // VkDescriptorType                     TargetDescriptorType
+		  {                                           // std::vector<VkDescriptorBufferInfo>  BufferInfos
+			{
+			  *UniformBuffer,                           // VkBuffer                             buffer
+			  0,                                        // VkDeviceSize                         offset
+			  VK_WHOLE_SIZE                             // VkDeviceSize                         range
+			}
+		  }
+		};
+		ImageDescriptorInfo image_descriptor_update = {
+		  DescriptorSets[0],                          // VkDescriptorSet                      TargetDescriptorSet
+		  1,                                          // uint32_t                             TargetDescriptorBinding
+		  0,                                          // uint32_t                             TargetArrayElement
+		  VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,  // VkDescriptorType                     TargetDescriptorType
+		  {                                           // std::vector<VkDescriptorImageInfo>   ImageInfos
+			{
+			  *Sampler,                                 // VkSampler                            sampler
+			  *ImageView,                               // VkImageView                          imageView
+			  VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL  // VkImageLayout                        imageLayout
+			}
+		  }
+		};
+		TexelBufferDescriptorInfo storage_texel_buffer_descriptor_update = {
+		  DescriptorSets[1],                          // VkDescriptorSet                      TargetDescriptorSet
+		  0,                                          // uint32_t                             TargetDescriptorBinding
+		  0,                                          // uint32_t                             TargetArrayElement
+		  VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER,    // VkDescriptorType                     TargetDescriptorType
+		  {                                           // std::vector<VkBufferView>            TexelBufferViews
+			{
+			  *VertexBufferView
+			}
+		  }
+		};
+
+
+		UpdateDescriptorSets(*LogicalDevice, { image_descriptor_update }, { buffer_descriptor_update }, { storage_texel_buffer_descriptor_update }, {});
+
+	}
+
 	virtual bool Draw() override {
 		// Record command buffer with compute shader dispatch
 
@@ -706,12 +857,28 @@ class Sample : public ShaderExample {
 			if (!EndCommandBufferRecordingOperation(command_buffer)) {
 				return false;
 			}
+
+			if (totalTimeRunning > 4.2)
+			{
+				
+				Restart();
+			}
+
 			return true;
 		};
 
 		return IncreasePerformanceThroughIncreasingTheNumberOfSeparatelyRenderedFrames(*LogicalDevice, GraphicsQueue.Handle, PresentQueue.Handle,
 			*Swapchain.Handle, Swapchain.Size, Swapchain.ImageViewsRaw, *RenderPass, { wait_semaphore_info }, prepare_frame, FrameResources);
 	}
+
+	bool Restart()
+	{
+		totalTimeRunning = 0;
+		CreateParticlesAndVertexBuffer();
+		CreateDescriptorSets();
+		return true;
+	}
+
 
 	void OnMouseEvent() {
 		UpdateStagingBuffer(false);
