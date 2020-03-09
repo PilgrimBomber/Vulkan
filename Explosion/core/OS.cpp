@@ -1,5 +1,3 @@
-
-
 #include "SampleFramework.h"
 
 namespace VulkanLibrary {

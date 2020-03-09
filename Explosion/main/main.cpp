@@ -1,4 +1,3 @@
-//#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 #include "SampleFramework.h"
 #include "OrbitingCamera.h"
 
@@ -15,7 +14,7 @@ class Sample : public ShaderExample {
 	VkDestroyer<VkImageView>						ImageView;
 	VkDestroyer<VkSampler>							Sampler;
 
-	const uint32_t                                  PARTICLES_COUNT = 1000;
+	const uint32_t                                  PARTICLES_COUNT = 700;
 	VkDestroyer<VkBuffer>                           VertexBuffer;
 	VkDestroyer<VkDeviceMemory>                     VertexBufferMemory;
 	VkDestroyer<VkBufferView>                       VertexBufferView;
@@ -50,6 +49,8 @@ class Sample : public ShaderExample {
 		if (!InitializeVulkan(WindowParameters, &device_features)) {
 			return false;
 		}
+
+		srand(TimerState.GetTime());
 
 		// Combined image sampler
 		int width = 1;
@@ -564,7 +565,6 @@ class Sample : public ShaderExample {
 
 		{
 			std::vector<float> particles;
-			srand(TimerState.GetTime());
 			for (uint32_t i = 0; i < PARTICLES_COUNT; ++i) {
 				OrbitingCamera particle({ 0.0f, 0.0f, 0.0f }, 0.05f, static_cast<float>((std::rand() % 361) - 180), static_cast<float>((std::rand() % 181) - 90));
 				Vector3 position = CreateParticlePosition(0.01f); //particle.GetPosition();
@@ -885,11 +885,11 @@ class Sample : public ShaderExample {
 	}
 
 	bool UpdateStagingBuffer(bool force) {
-		if (MouseState.Buttons[0].IsPressed) {
+		/*if (MouseState.Buttons[0].IsPressed) {
 			Camera.RotateHorizontally(0.5f * MouseState.Position.Delta.X);
 			Camera.RotateVertically(-0.5f * MouseState.Position.Delta.Y);
 			force = true;
-		}
+		}*/
 
 		if (force) {
 			UpdateUniformBuffer = true;
@@ -927,9 +927,9 @@ class Sample : public ShaderExample {
 	Vector3 CreateParticlePosition(float distance)
 	{
 		Vector3 pos = Vector3{
-				  static_cast<float>((std::rand() % 201 - 100) * 0.01f * distance),
-				  static_cast<float>((std::rand() % 201 - 100) * 0.01f * distance),
-				  static_cast<float>((std::rand() % 201 - 100) * 0.01f * distance)
+				  static_cast<float>((std::rand() % 151 - 75) * 0.01f * distance),
+				  static_cast<float>((std::rand() % 151 - 75) * 0.01f * distance),
+				  static_cast<float>((std::rand() % 201 - 75) * 0.01f * distance)
 		};
 		return pos;
 	}
