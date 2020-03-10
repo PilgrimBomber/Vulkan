@@ -16,10 +16,10 @@ layout(push_constant) uniform TimeInfo{
     float totalTime;
 }timeInfo;
 
-float SIZE =0.3+0.02*timeInfo.totalTime;
 
 void main() {
-  
+  float SIZE =0.3+0.02*timeInfo.totalTime;
+
   
   vec4 position = gl_in[0].gl_Position;
   
