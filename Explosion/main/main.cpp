@@ -86,7 +86,7 @@ class Sample : public ShaderExample {
 		}
 
 
-		Camera = OrbitingCamera(Vector3{ 0.0f, 0.0f, 0.0f }, 4.0f);
+		Camera = OrbitingCamera(Vector3{ 0.0f, 0.0f, 0.0f }, 5.0f);
 
 		// Compute command buffer creation
 
@@ -430,7 +430,6 @@ class Sample : public ShaderExample {
 		{
 			std::vector<float> particles;
 			for (uint32_t i = 0; i < PARTICLES_COUNT; ++i) {
-				OrbitingCamera particle({ 0.0f, 0.0f, 0.0f }, 0.05f, static_cast<float>((std::rand() % 361) - 180), static_cast<float>((std::rand() % 181) - 90));
 				Vector3 position = CreateParticlePosition(0.01f); //particle.GetPosition();
 				Vector3 color = 0.0075f * Vector3{
 				  static_cast<float>(std::rand() % 121 + 60),
